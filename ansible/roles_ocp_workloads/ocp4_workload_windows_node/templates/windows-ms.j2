@@ -43,11 +43,7 @@ spec:
           placement:
             availabilityZone: "{{ cluster_az }}"
             region: "{{ cluster_region }}"
-          securityGroups:
-            - filters:
-                - name: tag:Name
-                  values:
-                    - "{{ cluster_id }}-worker-sg"
+          securityGroups: {{ cluster_security_groups | to_json }}
           subnet:
             filters:
               - name: tag:Name

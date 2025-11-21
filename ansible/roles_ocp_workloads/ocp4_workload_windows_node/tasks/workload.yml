@@ -63,6 +63,11 @@
   set_fact:
     cluster_az: "{{ machineset_list.resources[0].spec.template.spec.providerSpec.value.placement.availabilityZone }}"
 
+# Get the security groups from existing worker MachineSet
+- name: Extract security groups from existing worker MachineSet
+  set_fact:
+    cluster_security_groups: "{{ machineset_list.resources[0].spec.template.spec.providerSpec.value.securityGroups }}"
+
 # Get the latest Windows Server 2019 with Containers
 - name: Extract the latest Windows Server 2019 with Containers Image
   ec2_ami_info:
